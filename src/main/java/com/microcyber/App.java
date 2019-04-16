@@ -15,6 +15,8 @@ public class App {
         System.out.println("mqtt: 1");
         System.out.println("mysql: 2");
         System.out.println("redis: 3");
+        System.out.println("influxdb: 4");
+        System.out.println("kafka: 5");
         String choice = scanner.nextLine();
         switch (choice) {
             case "1":
@@ -25,6 +27,12 @@ public class App {
                 break;
             case "3":
                 RedisTest.test();
+                break;
+            case "4":
+                System.out.println("run: 'curl 192.168.2.13:8086' yourself");
+                break;
+            case "5":
+                KafkaTest.test();
                 break;
         }
 
