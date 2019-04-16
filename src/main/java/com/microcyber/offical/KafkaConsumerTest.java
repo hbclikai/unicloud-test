@@ -30,7 +30,7 @@ public class KafkaConsumerTest {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Arrays.asList("test"));
+        consumer.subscribe(Arrays.asList("topic1"));
 
         System.out.println("开始执行poll");
 

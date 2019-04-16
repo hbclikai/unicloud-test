@@ -11,7 +11,7 @@ public class KafkaProducerTest {
         String boostrapServers = "192.168.2.4:9092,192.168.2.5:9092,192.168.2.6:9092";
 
         System.out.println("boostrapServers: "+boostrapServers);
-        System.out.println("即将向主题'test'发送消息....");
+        System.out.println("即将向主题'topic1'发送消息....");
 
         Properties props = new Properties();
         // Kafka服务端的主机名和端口号
