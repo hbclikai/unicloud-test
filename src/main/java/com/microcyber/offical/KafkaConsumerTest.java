@@ -36,7 +36,7 @@ public class KafkaConsumerTest {
         System.out.println("开始执行poll");
 
         // 读取超时时间为1000ms
-        ConsumerRecords<String, String> records = consumer.poll(1000);
+        ConsumerRecords<String, String> records = consumer.poll(30000);
         System.out.println("获取消息:"+records.count()+"条");
         for (ConsumerRecord<String, String> record : records) {
             System.out.printf("offset = %d, key = %s, partition = %s, value = %s%n"
