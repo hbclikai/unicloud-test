@@ -12,7 +12,8 @@ import java.util.Properties;
 public class KafkaConsumerTest {
 
     public static void test() {
-        String boostrapServers = "192.168.2.4:2181,192.168.2.5:2181,192.168.2.6:2181";
+        String boostrapServers = "192.168.2.4:9092,192.168.2.5:9092,192.168.2.6:9092";
+//        String boostrapServers = "192.168.2.186:9092";
 
         System.out.println("boostrapServers: " + boostrapServers);
         System.out.println("即将从主题'test'消费消息....");
@@ -35,6 +36,7 @@ public class KafkaConsumerTest {
 
         // 读取超时时间为1000ms
         ConsumerRecords<String, String> records = consumer.poll(1000);
+        System.out.println("获取消息:"+records.count()+"条");
         for (ConsumerRecord<String, String> record : records) {
             System.out.printf("offset = %d, key = %s, partition = %s, value = %s%n"
                     , record.offset(), record.key(), record.partition(), record.value());
