@@ -8,15 +8,21 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class KafkaConsumerTest {
 
     public static void test() {
         String boostrapServers = "192.168.2.4:9092,192.168.2.5:9092,192.168.2.6:9092";
-//        String boostrapServers = "192.168.2.186:9092";
+
+        //读取topic
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter topic : (for example topic1)");
+        String topic = scanner.nextLine();
+
 
         System.out.println("boostrapServers: " + boostrapServers);
-        System.out.println("即将从主题'test'消费消息....");
+        System.out.println("即将从主题" + topic + "消费消息....");
 
         Properties props = new Properties();
         // 定义kakfa 服务的地址，不是必须要把所有broker都写出来,写一个也行
@@ -31,16 +37,16 @@ public class KafkaConsumerTest {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Arrays.asList("topic1"));
+        consumer.subscribe(Arrays.asList(topic));
 
-        System.out.println("开始执行poll");
-
-        // 读取超时时间为1000ms
-        ConsumerRecords<String, String> records = consumer.poll(30000);
-        System.out.println("获取消息:"+records.count()+"条");
-        for (ConsumerRecord<String, String> record : records) {
-            System.out.printf("offset = %d, key = %s, partition = %s, value = %s%n"
-                    , record.offset(), record.key(), record.partition(), record.value());
+        for (int i = 0; i < 10; i++) {
+            System.out.println("开始执行poll");
+            ConsumerRecords<String, String> records = consumer.poll(1000); // 读取超时时间为1000ms
+            System.out.println("获取消息:" + records.count() + "条");
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("offset = %d, key = %s, partition = %s, value = %s%n"
+                        , record.offset(), record.key(), record.partition(), record.value());
+            }
         }
 
         System.out.println("消费结束");

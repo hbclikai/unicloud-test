@@ -4,11 +4,17 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
+import java.util.Scanner;
 
 public class KafkaProducerTest {
 
-    public static void test() {
+    public static void test() throws InterruptedException {
         String boostrapServers = "192.168.2.4:9092,192.168.2.5:9092,192.168.2.6:9092";
+
+        // 读取topic
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter topic:(for example topic1)");
+        String topic = scanner.nextLine();
 
         System.out.println("boostrapServers: "+boostrapServers);
         System.out.println("即将向主题'topic1'发送消息....");
@@ -30,12 +36,12 @@ public class KafkaProducerTest {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 5; i++) {
-            producer.send(new ProducerRecord<String, String>("topic1"
-                    , Integer.toString(i), "hello world-" + i));
+        for (int i = 0; i < 50; i++) {
+            producer.send(new ProducerRecord<String, String>(topic
+                    , Integer.toString(i), "test-" + i));
+            System.out.println("发送消息测试成功test-" + i);
+            Thread.sleep(1000);
         }
-
         producer.close();
-        System.out.println("发送消息测试成功");
     }
 }
