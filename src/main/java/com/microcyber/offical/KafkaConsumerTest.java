@@ -39,7 +39,7 @@ public class KafkaConsumerTest {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Arrays.asList(topic));
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println("开始执行poll");
             ConsumerRecords<String, String> records = consumer.poll(1000); // 读取超时时间为1000ms
             System.out.println("获取消息:" + records.count() + "条");

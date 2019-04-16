@@ -36,7 +36,7 @@ public class KafkaProducerTest {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 100; i++) {
             producer.send(new ProducerRecord<String, String>(topic
                     , Integer.toString(i), "test-" + i));
             System.out.println("发送消息测试成功test-" + i);
