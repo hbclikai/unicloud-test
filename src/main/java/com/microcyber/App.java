@@ -5,7 +5,7 @@ import com.microcyber.offical.*;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         //选择测试种类
         System.out.println("enter test type:");
