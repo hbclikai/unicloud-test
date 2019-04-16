@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class MqttTest {
 
-    public static void testMqtt() {
+    public static void test() {
         Scanner scanner = new Scanner(System.in);
         //1.topic
         System.out.println("enter topic:");
