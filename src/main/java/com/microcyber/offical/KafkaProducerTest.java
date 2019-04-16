@@ -31,7 +31,7 @@ public class KafkaProducerTest {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         for (int i = 0; i < 5; i++) {
-            producer.send(new ProducerRecord<String, String>("test"
+            producer.send(new ProducerRecord<String, String>("topic1"
                     , Integer.toString(i), "hello world-" + i));
         }
 
